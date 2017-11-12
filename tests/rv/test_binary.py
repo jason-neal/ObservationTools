@@ -5,7 +5,7 @@ from hypothesis import strategies as st
 from observationtools.utils import parse
 
 import observationtools.utils.rv_utils
-from observationtools.rv.binary import parse_args
+from observationtools.rv.binary_plot import parse_args
 from observationtools.utils.rv_utils import join_times, strtimes2jd
 
 

@@ -94,7 +94,7 @@ def main(params, mode="phase", obs_times=None, obs_list=None, date=None,
                                  t_future=future_obs,
                                  cycle_fraction=cycle_fraction,
                                  phase_center=phase_center)
-     elif mode == "single_phase":
+    elif mode == "single_phase":
         fig = binary_phase_curve(host_orbit, None, t_past=past_obs,
                                  t_future=future_obs,
                                  cycle_fraction=cycle_fraction,
@@ -103,7 +103,7 @@ def main(params, mode="phase", obs_times=None, obs_list=None, date=None,
         fig = binary_time_curve(host_orbit, companion_orbit, t_past=past_obs,
                                 start_day=date_split, t_future=future_obs,
                                 cycle_fraction=cycle_fraction)
-     elif mode == "single_time":
+    elif mode == "single_time":
         fig = binary_time_curve(host_orbit, None, t_past=past_obs,
                                     start_day=date_split, t_future=future_obs,
                                     cycle_fraction=cycle_fraction)
