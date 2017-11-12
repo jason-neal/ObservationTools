@@ -36,11 +36,9 @@ def parse_args(args):
     parser.add_argument('-o', '--obs_times', help='Times of previous observations YYYY-MM-DD format',
                         nargs='+', default=None)
     parser.add_argument('-l', '--obs_list', help='File with list of obs times.', type=str, default=None)
-    # parser.add_argument('-f', '--files', help='Params and obs-times are file'
-    #                    ' names to open', action='store_true')
     parser.add_argument('-m', '--mode', help='Display mode '
                                              ' e.g. phase or time plot. Default="phase"',
-                        choices=['phase', 'time'], default='phase', type=str)
+                        choices=['phase', 'single_phase', 'time', 'sinlge_time'], default='phase', type=str)
     parser.add_argument("-c", "--cycle_fraction", default=1.0, help="Cylcle fraction to display", type=float)
     parser.add_argument("-p", "--phase_center", help="Center of phase curve.", default=0)
     parser.add_argument("--save_only", help="Only save the figure, do not show it.", action="store_true")
@@ -95,10 +93,20 @@ def main(params, mode="phase", obs_times=None, obs_list=None, date=None,
                                  t_future=future_obs,
                                  cycle_fraction=cycle_fraction,
                                  phase_center=phase_center)
+     elif mode == "single_phase":
+        fig = binary_phase_curve(host_orbit, None, t_past=past_obs,
+                                 t_future=future_obs,
+                                 cycle_fraction=cycle_fraction,
+                                 phase_center=phase_center)
     elif mode == "time":
         fig = binary_time_curve(host_orbit, companion_orbit, t_past=past_obs,
                                 start_day=date_split, t_future=future_obs,
                                 cycle_fraction=cycle_fraction)
+     elif mode == "single_time":
+        fig = binary_time_curve(host_orbit, None, t_past=past_obs,
+                                    start_day=date_split, t_future=future_obs,
+                                    cycle_fraction=cycle_fraction)
+
     else:
         raise NotImplementedError("Other modes are not Implemented yet.")
     if not save_only:
@@ -107,8 +115,8 @@ def main(params, mode="phase", obs_times=None, obs_list=None, date=None,
     return fig
 
 
-def binary_phase_curve(host, companion, cycle_fraction=1, phase_center=0, ignore_mean=False, t_past=False,
-                       t_future=False):
+def binary_phase_curve(host, companion, cycle_fraction=1, phase_center=0,
+                       ignore_mean=False, t_past=False, t_future=False):
     # type: (RV, RV, float, bool, Any, Any) -> int
     """Plot RV phase curve centered on zero.
 
@@ -191,8 +199,8 @@ def binary_phase_curve(host, companion, cycle_fraction=1, phase_center=0, ignore
     return fig
 
 
-def binary_time_curve(host, companion, cycle_fraction=1, ignore_mean=False, t_past=False, t_future=False,
-                      start_day=None):
+def binary_time_curve(host, companion, cycle_fraction=1, ignore_mean=False,
+                      t_past=False, t_future=False, start_day=None):
     # type: (RV, RV, float, bool, Any, Any, Any) -> int
     """Plot RV phase curve centered on zero.
 
