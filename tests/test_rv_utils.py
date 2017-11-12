@@ -7,8 +7,10 @@ from astropy.constants import M_jup, M_sun
 from hypothesis import given
 from hypothesis import strategies as st
 
-from utils.rv_utils import (RV, JulianDate, check_core_parameters, generate_companion_label, prepare_mass_params,
-                            strtimes2jd)
+from observationtools.utils.rv_utils import (check_core_parameters, generate_companion_label,
+                                             prepare_mass_params,
+                                             strtimes2jd)
+from observationtools.utils.juliandate import JulianDate
 from observationtools.rv.rv import RV
 
 

@@ -19,7 +19,8 @@ from astropy.constants import c
 from mpl_toolkits.axes_grid1 import host_subplot
 from observationtools.utils.parse import parse_paramfile
 
-from observationtools.utils.rv_utils import RV, JulianDate, prepare_mass_params, generate_companion_label
+from observationtools.utils.rv_utils import prepare_mass_params, generate_companion_label
+from observationtools.utils.juliandate import JulianDate
 from observationtools.rv.rv import RV
 from observationtools.utils.rv_utils import strtimes2jd, join_times, check_core_parameters
 
@@ -65,7 +66,6 @@ def main(params, mode="phase", obs_times=None, obs_list=None, date=None,
     date: str
         Reference date for some modes. Defaults=None)
     """
-
     # Load in params and store as a dictionary
     parameters = parse_paramfile(params)
 
