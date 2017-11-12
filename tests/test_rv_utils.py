@@ -9,6 +9,7 @@ from hypothesis import strategies as st
 
 from utils.rv_utils import (RV, JulianDate, check_core_parameters, generate_companion_label, prepare_mass_params,
                             strtimes2jd)
+from observationtools.rv.rv import RV
 
 
 @pytest.mark.xfail

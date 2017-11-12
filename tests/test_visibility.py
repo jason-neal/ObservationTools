@@ -1,7 +1,8 @@
 """Test code for visibility.py."""
 
 import pytest
-from visibility import decdeg2dms, StarObsPlot, VisibilityPlot
+
+from observationtools.visibility import decdeg2dms
 
 
 @pytest.mark.parametrize("test_input,expected", [

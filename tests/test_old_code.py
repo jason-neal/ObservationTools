@@ -2,10 +2,10 @@ import numpy as np
 import pytest
 from astropy.constants import M_sun, M_jup
 from hypothesis import settings, given, strategies as st
+from observationtools.utils.parse import parse_paramfile
 
-import rv
-from utils.old import RV_from_params, companion_amplitude
-from utils.parse import parse_paramfile
+from observationtools import rv
+from observationtools.utils.old import RV_from_params, companion_amplitude
 
 
 @pytest.fixture(params=["tests/test_params.txt", 'tests/test_params2.txt'])

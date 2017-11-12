@@ -20,6 +20,7 @@ from mpl_toolkits.axes_grid1 import host_subplot
 from observationtools.utils.parse import parse_paramfile
 
 from observationtools.utils.rv_utils import RV, JulianDate, prepare_mass_params, generate_companion_label
+from observationtools.rv.rv import RV
 from observationtools.utils.rv_utils import strtimes2jd, join_times, check_core_parameters
 
 c_km_s = c.to(u.kilometer / u.second)  # Speed of light in km/s

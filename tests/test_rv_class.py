@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 from hypothesis import given, strategies as st, example, assume
+from observationtools.utils.parse import parse_paramfile
 
-from utils.parse import parse_paramfile
-from utils.rv_utils import RV
+from observationtools.rv.rv import RV
 
 
 def test_rv_object_instance_of_rv_class():
