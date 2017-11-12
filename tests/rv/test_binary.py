@@ -10,20 +10,23 @@ from observationtools.utils.rv_utils import join_times, strtimes2jd
 
 
 def test_parse_obslist():
-    test_file = "tests/test_obstimes.txt"
+    test_file = "tests/data/test_obstimes.txt"
     obs_list = parse.parse_obslist(test_file)
     assert isinstance(obs_list, list)
     print(obs_list)
     assert sorted(obs_list) == sorted(["2012-08-14 12:44:05", "2012-09-24 13:12:10"])
 
 
-def test_parse_params():
-    param_file = "tests/test_params.txt"
+@pytest.mark.parametrize("param_file", [
+    "tests/data/test_params.txt",
+    "tests/data/test_params2.txt"
+])
+def test_parse_paramfile(param_file):
     params = parse.parse_paramfile(param_file)
 
     assert isinstance(params, dict)
     assert "name" in params.keys()
-    assert params["name"] == "test"
+    assert "test" in params["name"]
     assert "period" in params.keys()
     assert isinstance(params["period"], float)
 
@@ -51,9 +54,9 @@ def test_parse_list_string_with_strings():
 
 @pytest.mark.parametrize("times,obs_list,expected", [
     (None, None, None),
-    (None, "tests/test_obstimes.txt", ["2012-08-14 12:44:05", "2012-09-24 13:12:10"]),
+    (None, "tests/data/test_obstimes.txt", ["2012-08-14 12:44:05", "2012-09-24 13:12:10"]),
     (["2017-05-01", "2015-01-02", "2016-04-05 12:34:15"], None, ["2017-05-01", "2015-01-02", "2016-04-05 12:34:15"]),
-    (["2017-05-01", "2015-01-02", "2016-04-05 12:34:15"], "tests/test_obstimes.txt",
+    (["2017-05-01", "2015-01-02", "2016-04-05 12:34:15"], "tests/data/test_obstimes.txt",
      ["2017-05-01", "2015-01-02", "2016-04-05 12:34:15", "2012-08-14 12:44:05", "2012-09-24 13:12:10"]),
 ])
 def test_join_times(times, obs_list, expected):
@@ -104,9 +107,9 @@ def test_reduced_strtimes2jd(times, expected_jd):
 
 def test_parser():
     # https://stackoverflow.com/questions/18160078/how-do-you-write-tests-for-the-argparse-portion-of-a-python-module
-    parsed = parse_args(["test/test_params.txt", "-m", "phase"])
+    parsed = parse_args(["tests/data/test_params.txt", "-m", "phase"])
 
-    assert parsed.params == "test/test_params.txt"
+    assert parsed.params == "tests/data/test_params.txt"
     assert parsed.mode == "phase"
     assert parsed.obs_times == None
     assert parsed.obs_list == None

@@ -8,7 +8,7 @@ from observationtools import rv
 from observationtools.utils.old import RV_from_params, companion_amplitude
 
 
-@pytest.fixture(params=["tests/test_params.txt", 'tests/test_params2.txt'])
+@pytest.fixture(params=["tests/data/test_params.txt", 'tests/data/test_params2.txt'])
 def params(request):
     """Load Parameter file."""
     return parse_paramfile(request.param)

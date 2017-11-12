@@ -23,7 +23,7 @@ def test_initalize_rv_class_from_dict():
 
 
 def test_initalize_rv_class_from_file():
-    paramfile = "tests/test_params.txt"
+    paramfile = "tests/data/test_params.txt"
     rv = RV.from_file(paramfile)
     params = parse_paramfile(paramfile)
 
