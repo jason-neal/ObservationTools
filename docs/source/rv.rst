@@ -3,6 +3,7 @@ Radial Velocity
 ===============
 
 The ``rv.py`` script allows you to perform radial velocity (rv) calculations and create radial velocity plots to aid in planning of radial velocity observations.
+The radial velocity calculations are handled by an :ref:`RV <rvclass>` class, while a :ref:`JulianDate <juliandateclass>` class is used to handle date/time conversions.
 
 Parameter file
 ==============
@@ -49,23 +50,27 @@ Will create a temporal RV curve, marking the locations of the observations provi
    :alt: Radial velocity curve, with observations indicated.
    :align: center
 
+More usage examples can be found here:
 Modes
 ======
-Different functionally can be accessed from the modes flag. ``-m``, or ``--mode``. The default mode is ``phase``.
+Different functionally can be accessed from the modes flag. ``-m``, or ``--mode``. The dmoefault mode is ``phase``.
 
 phase
 ------
-Produces the RV phase curve of the system between a phase -0.5 and 0.5.
+Produces the RV phase curve with ``cycle_fraction`` and ``phase_ceter`` configurable.
 If the ``k2`` parameter is provided or the mass of the host (``m_host``) and companion (``msini`` or ``m_true``), then the RV for the companion is plotted on the second y-axis.
-
 
 time
 -----
-Produces a temporal RV curve of the system over one phase beginning today.
+Produces a temporal RV curve of the system. The reference day is today but can be changed using the ``-d``, ``--date`` option.
 
-The ``-d``, ``--date`` flag can be used to specify a different reference date for the ``time`` mode.
 
-If observations dates are provided with the ``-o``, or  ``-l`` flags then the curve starts from the earlier of the reference date and the first observation and continues till one period after the reference date.
+Marking observations
+-------------------
+To mark the position of past and/or future observations you the dates can be provided with the ``-o`` (times passed to command line), or  ``-l`` (file with list of observations) options.
+The observation times are marked/coloured as ``past`` or ``future``, relative to the reference date.
+
+The temporal space ranges from the maximum extent of the ``cycle_fraction`` after the reference date and any marked observation times.
 
 
 debug
@@ -73,3 +78,26 @@ debug
 You can turn on debugging information using the ``--debug`` flag, e.g.::
 
     python rv.py data/HD30501_params.txt -l data/hd30501_obs.txt --debug
+
+
+.. _rvclass:
+
+RV class
+--------
+.. autoclass:: utils.rv_utils.RV
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+.. _juliandateclass:
+
+JulianDate
+----------
+Used to convert from datetime objects and strings into julian dates and back again.
+This was created because epehm.julain_date() only converted to julian date.
+
+.. autoclass:: utils.rv_utils.JulianDate
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -14,6 +14,7 @@ A set of tools to plan astronomical observations.
    installation
    visibility
    rv
+   more_examples
 
 
 Contributors
