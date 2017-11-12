@@ -23,11 +23,12 @@ config = {
         'tests': ['pytest', 'coverage', 'pytest-cov', 'python-coveralls', 'hypothesis'],
         'docs': ['sphinx >= 1.4'],
     },
-    'packages': find_packages(exclude=['contrib', 'docs', 'tests', 'data']),
+    'packages': find_packages('src', exclude=['contrib', 'docs', 'tests', 'data']),
+    'package_dir': {'': 'src'},
     'package_data': {
         # Inlcude the data files:
         '': ['data/*']},
-    'scripts': ['visibility.py', 'binary_plot.py'],
+    'scripts': ['src/observationtools/visibility.py', 'src/observationtools/rv/binary_plot.py'],
     'name': 'ObservationTools',
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     'classifiers': [
