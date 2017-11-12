@@ -1,7 +1,7 @@
 import numpy as np
 from astropy.constants import M_sun, M_jup
 
-from utils.rv_utils import rv_curve_py
+from observationtools.utils.rv_utils import rv_curve_py
 
 
 def RV_from_params(t, params, ignore_mean=False, companion=False):

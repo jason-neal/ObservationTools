@@ -27,7 +27,7 @@ config = {
     'package_data': {
         # Inlcude the data files:
         '': ['data/*']},
-    'scripts': ['visibility.py', 'rv.py'],
+    'scripts': ['visibility.py', 'binary.py'],
     'name': 'ObservationTools',
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     'classifiers': [

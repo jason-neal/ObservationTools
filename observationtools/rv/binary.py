@@ -17,10 +17,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from astropy.constants import c
 from mpl_toolkits.axes_grid1 import host_subplot
+from observationtools.utils.parse import parse_paramfile
 
-from utils.parse import parse_paramfile
-from utils.rv_utils import RV, JulianDate, prepare_mass_params, generate_companion_label
-from utils.rv_utils import strtimes2jd, join_times, check_core_parameters
+from observationtools.utils.rv_utils import RV, JulianDate, prepare_mass_params, generate_companion_label
+from observationtools.utils.rv_utils import strtimes2jd, join_times, check_core_parameters
 
 c_km_s = c.to(u.kilometer / u.second)  # Speed of light in km/s
 

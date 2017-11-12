@@ -6,7 +6,7 @@ from typing import Any
 import numpy as np
 from astropy.constants import M_jup, M_sun
 
-from utils.parse import parse_obslist, parse_paramfile
+from observationtools.utils.parse import parse_obslist
 
 
 # TODO: Replace "Any" with numpy type hint when available
