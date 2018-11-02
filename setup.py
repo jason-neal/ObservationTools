@@ -6,7 +6,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-if sys.version_info[:2] > (3, 4):
+if sys.version_info[:2] < (3, 4):
     warnings.warn(
         """ObservationTools is not supported for Python < 3.4 (using {}).
 It may still work with older dependencies that support Python 2
