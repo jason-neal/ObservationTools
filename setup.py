@@ -1,7 +1,19 @@
+import sys
+import warnings
+
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
+
+if sys.version_info[:2] < (3, 4):
+    warnings.warn(
+        """ObservationTools is not supported for Python < 3.4 (using {}).
+It may still work using dependency versions that support Python 2
+but this is not guaranteed.""".format(
+            sys.version
+        ), RuntimeWarning
+    )
 
 from setuptools import find_packages
 
@@ -39,7 +51,7 @@ config = {
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Astronomy',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2',
+        #'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
