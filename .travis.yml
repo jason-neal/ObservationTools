@@ -21,6 +21,10 @@ matrix:
         - python: 3.5
         - python: 3.6
 
+        - python: 3.7
+          dist: xenial  # Required for Python 3.7
+          sudo: true    # travis-ci/travis-ci#9069
+
         # Old versions of NumPy.
         - python: 2.7
           env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.3"
