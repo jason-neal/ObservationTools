@@ -28,11 +28,11 @@ matrix:
 
         # Old versions of NumPy.
         - python: 2.7
-          env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.3" ASTROPY_VERSION="astropy=2"
+          env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.2.3" ASTROPY_VERSION="astropy=2"
         - python: 2.7
-          env: NUMPY_VERSION="numpy==1.15" MATPLOTLIB_VERSION="matplotlib==2.3" ASTROPY_VERSION="astropy=2"
+          env: NUMPY_VERSION="numpy==1.15" MATPLOTLIB_VERSION="matplotlib==2.2.3" ASTROPY_VERSION="astropy=2"
         - python: 3.3
-          env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.3" ASTROPY_VERSION="astropy=3"
+          env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.2.3" ASTROPY_VERSION="astropy=3"
 
         # New versions of numpy
         - python: 3.7
