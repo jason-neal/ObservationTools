@@ -1,13 +1,5 @@
 # Travis CI setup
 language: python
-python:
-  - "3.4"
-  - "3.5"
-  - "3.6"
-
-cache:
-  directories:
-    - $HOME/.cache/pip
 
 env:
     global:
@@ -15,35 +7,38 @@ env:
         - MATPLOTLIB_VERSION=$(grep matplotlib requirements/requirements.txt)
         - ASTROPY_VERSION=$(grep astropy requirements/requirements.txt)
 
+python:
+  # Versions that will be tested with requirements.txt versions.
+  - "3.5"
+  - "3.6"
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
 matrix:
     include:
-        - python: 3.4
-        - python: 3.5
-        - python: 3.6
-
         - python: 3.7
           dist: xenial  # Required for Python 3.7
           sudo: true    # travis-ci/travis-ci#9069
 
-        # Old versions of NumPy.
+        # Old versions of dependencies.
         - python: 2.7
-          env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.2.3" ASTROPY_VERSION="astropy=2"
-        - python: 2.7
-          env: NUMPY_VERSION="numpy==1.15" MATPLOTLIB_VERSION="matplotlib==2.2.3" ASTROPY_VERSION="astropy=2"
+          env: MATPLOTLIB_VERSION="matplotlib<3" ASTROPY_VERSION="astropy<3"
         - python: 3.3
-          env: NUMPY_VERSION="numpy==1.11" MATPLOTLIB_VERSION="matplotlib==2.2.3" ASTROPY_VERSION="astropy=3"
-
-        # New versions of numpy
-        - python: 3.7
-          dist: xenial  # Required for Python 3.7
-          sudo: true    # travis-ci/travis-ci#9069
+          env: NUMPY_VERSION="numpy<=1.11.3" MATPLOTLIB_VERSION="matplotlib<2" ASTROPY_VERSION="astropy<2"
+        - python: 3.4
+          env: MATPLOTLIB_VERSION="matplotlib<3"
+        - python: 3.5
+          env: MATPLOTLIB_VERSION="matplotlib<3" ASTROPY_VERSION="astropy<3"
+        - python: 3.6
+          env: MATPLOTLIB_VERSION="matplotlib<3" ASTROPY_VERSION="astropy<3"
 
 before_install:
   - pip install --upgrade pip
 
 install:
-  - pip install $NUMPY_VERSION $MATPLOTLIB_VERSION
-  - pip install $ASTROPY_VERSION
+  - pip install $NUMPY_VERSION $MATPLOTLIB_VERSION $ASTROPY_VERSION
   #https://stackoverflow.com/questions/33441033/pip-install-to-custom-target-directory-and-exclude-specific-dependencies
   - pip install $(grep -ivE "numpy|matplotlib|astropy" requirements/requirements.txt)
   - pip install -r requirements/requirements_dev.txt
